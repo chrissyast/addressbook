@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +61,7 @@ public class ContactController {
         try {
             Contact savedItem = contactRepository.save(item);
             return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
-        } catch (ConstraintViolationException e) {
+        } catch (ConstraintViolationException | TransactionSystemException e) {
             return new ValidationExceptionHandler().handle(e);
         }
     }

@@ -18,8 +18,8 @@ public class Contact {
     @NotBlank(message="Please supply a name")
     private String name;
 
-    @Pattern(message = "Number supplied is not valid", regexp = "\\+?\\d+\\b")
     @Valid
+    @Pattern(message = "Number supplied is not valid", regexp = "\\+?\\d+\\b")
     @NotBlank(message="Please supply a phone number")
     private String phoneNumber;
 
